@@ -1,6 +1,5 @@
 var express = require('express'),
-    utils = require('./lib/utils'),
-    request = require('request')
+    utils = require('./lib/utils')
 
 var app = express.createServer()
 

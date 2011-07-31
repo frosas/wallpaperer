@@ -5,30 +5,29 @@ var app = express.createServer()
 
 app.get('/api/transform', function(request, response) {
 
-    var fetchImage = function (url, callback) {
-        utils.request({ url: url, encoding: 'binary' }, function(error, response2, data) {
-            callback(error, data)
+    var fetch = function(url, callback) {
+        utils.request({ url: url, encoding: 'binary' }, function(error, response, image) {
+            callback(error, image)
         })
     }
 
-    var resizeImage = function(data, width, height, callback) {
-        require('imagemagick').resize({ 
-            srcData: data, 
-            width: width,
-            height: height,
-            quality: '0.95'
-        }, callback)
+    var resize = function(image, width, height, callback) {
+        require('imagemagick').resize({ srcData: image, width: width, height: height, quality: '0.95' }, callback)
     }
 
-    // TODO Why response is undefined if moved inside fetchImage()?
+    var send = function(image) {
+        response.response().contentType('image/jpeg')
+        response.response().write(image, 'binary')
+        response.response().end()
+    }
+
+    // TODO Why response is undefined if moved inside fetch()?
     var response = new utils.Response(response)
-    fetchImage(request.param('url'), function(error, data) {
+    fetch(request.param('url'), function(error, image) {
         if (error) return response.handleUserError(error)
-        resizeImage(data, request.param('width'), request.param('height'), function(error, data) {
+        resize(image, request.param('width'), request.param('height'), function(error, image) {
             if (error) return response.handleServerError(error)
-            response.response().contentType('image/jpeg')
-            response.response().write(data, 'binary')
-            response.response().end()
+            send(image)
         })
     })
 })

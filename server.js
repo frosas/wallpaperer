@@ -19,11 +19,10 @@ app.get('/api/transform', function(request, response) {
     var resizeAndCrop = function(image, width, height, callback) {
         var maxWidthOrHeight = Math.max(width, height)
         var args = [
-            '-', 
-            '-resize', maxWidthOrHeight + 'x' + maxWidthOrHeight, 
-            '-quality', 95, 
+            '-[' + maxWidthOrHeight + 'x' + maxWidthOrHeight + '^]', // "Resize During Image Read"
             '-gravity', 'center', 
             '-crop', width + 'x' + height + '+0+0',
+            '-quality', 95, 
             '-'
         ]
         console.log("convert " + args.join(" "))

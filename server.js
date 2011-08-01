@@ -26,6 +26,7 @@ app.get('/api/transform', function(request, response) {
             '-crop', width + 'x' + height + '+0+0',
             '-'
         ]
+        console.log("convert " + args.join(" "))
         var proc = imagemagick.convert(args, callback)
         proc.stdin.setEncoding('binary')
         proc.stdin.write(image, 'binary')

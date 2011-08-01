@@ -1,5 +1,6 @@
 var express = require('express'),
-    utils = require('./lib/utils')
+    utils = require('./lib/utils'),
+    imagemagick = require('imagemagick')
 
 var app = express.createServer()
 
@@ -11,8 +12,20 @@ app.get('/api/transform', function(request, response) {
         })
     }
 
-    var resize = function(image, width, height, callback) {
-        require('imagemagick').resize({ srcData: image, width: width, height: height, quality: '0.95' }, callback)
+    var resizeAndCrop = function(image, width, height, callback) {
+        var maxWidthOrHeight = Math.max(width, height)
+        var args = [
+            '-', 
+            '-resize', maxWidthOrHeight + 'x' + maxWidthOrHeight, 
+            '-quality', 95, 
+            '-gravity', 'center', 
+            '-crop', width + 'x' + height + '+0+0',
+            '-'
+        ]
+        var proc = imagemagick.convert(args, callback)
+        proc.stdin.setEncoding('binary')
+        proc.stdin.write(image, 'binary')
+        proc.stdin.end()
     }
 
     var send = function(image) {
@@ -25,7 +38,7 @@ app.get('/api/transform', function(request, response) {
     var response = new utils.Response(response)
     fetch(request.param('url'), function(error, image) {
         if (error) return response.handleUserError(error)
-        resize(image, request.param('width'), request.param('height'), function(error, image) {
+        resizeAndCrop(image, request.param('width'), request.param('height'), function(error, image) {
             if (error) return response.handleServerError(error)
             send(image)
         })

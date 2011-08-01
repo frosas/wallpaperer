@@ -1,6 +1,7 @@
 {
     "name": "wallpaperer",
     "version": "1.0.0",
+    "main": "server.js",
     "dependencies": {
         "express": "2.4.x",
         "imagemagick": "0.1.x",

@@ -5,7 +5,8 @@
     "dependencies": {
         "express": "2.4.x",
         "imagemagick": "0.1.x",
-        "request": "2.0.x"
+        "request": "2.0.x",
+        "ejs": "0.4.x"
     }
 }
 

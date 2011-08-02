@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wallpaperer</title>
+        <style>
+            body {
+                font-family: Droid Sans, Arial, sans-serif;
+                font-size: 14px;
+            }
+            input[name=url] { 
+                width: 45em;
+            }
+            input[name=width], 
+            input[name=height] { 
+                width: 5em;
+            }
+        </style>
+    </head>
+    <body>
+
+        <form id="image-form">
+            <div>URL <input name="url" /></div>
+            <div>Dimensions <input name="width" /> x <input name="height" /></div>
+            <input type="submit" value="Resize" />
+        </form>
+
+        <div>
+            <span id="image-placeholder" />
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script>
+            $('input[name=width]').val(screen.width)
+            $('input[name=height]').val(screen.height)
+
+            $('#image-form').submit(function() {
+                var url = '/api/transform?' + $.param({
+                    width: $('input[name=width]').val(),
+                    height: $('input[name=height]').val(),
+                    url: $('input[name=url]').val()
+                })
+                $('#image-placeholder').html(
+                    $('<img>').attr({src: url})
+                )
+                return false
+            })
+        </script>
+
+    </body>
+</html>

@@ -6,6 +6,13 @@ var app = express.createServer()
 
 app.configure(function() {
     app.use(express.static(__dirname + '/public'))
+    app.set('views', __dirname + '/views')
+    app.set('view engine', 'ejs')
+    app.set('view options', { layout: false })
+})
+
+app.get('/', function(request, response) {
+    response.render('index')
 })
 
 app.get('/api/transform', function(request, response) {

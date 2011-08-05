@@ -41,7 +41,7 @@ app.get('/api/transform', function(request, response) {
 
     var send = function(image) {
         response.response().contentType('image/jpeg')
-        response.response().write(image, 'binary')
+        response.response().write(image)
         response.response().end()
     }
 

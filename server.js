@@ -50,7 +50,7 @@ app.get('/api/transform', function(request, response) {
     fetch(request.param('url'), function(error, image) {
         if (error) return response.handleUserError(error)
         resizeAndCrop(image, request.param('width'), request.param('height'), function(error, image) {
-            if (error) return response.handleServerError(error)
+            if (error) return response.handleError(error)
             send(image)
         })
     })

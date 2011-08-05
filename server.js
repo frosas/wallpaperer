@@ -1,6 +1,6 @@
 var express = require('express'),
     utils = require('./lib/utils'),
-    imagemagick = require('imagemagick')
+    image = require('./lib/image')
 
 var app = express.createServer()
 
@@ -17,39 +17,17 @@ app.get('/', function(request, response) {
 
 app.get('/api/transform', function(request, response) {
 
-    var fetch = function(url, callback) {
-        utils.request({ url: url, encoding: 'binary' }, function(error, response, image) {
-            callback(error, image)
-        })
-    }
-
-    var resizeAndCrop = function(image, width, height, callback) {
-        var maxWidthOrHeight = Math.max(width, height)
-        var args = [
-            '-[' + maxWidthOrHeight + 'x' + maxWidthOrHeight + '^]', // "Resize During Image Read"
-            '-gravity', 'center', 
-            '-crop', width + 'x' + height + '+0+0',
-            '-quality', 95, 
-            '-'
-        ]
-        console.log("convert " + args.join(" "))
-        var proc = imagemagick.convert(args, callback)
-        proc.stdin.setEncoding('binary')
-        proc.stdin.write(image, 'binary')
-        proc.stdin.end()
-    }
-
     var send = function(image) {
         response.response().contentType('image/jpeg')
         response.response().write(image)
         response.response().end()
     }
 
-    // TODO Why response is undefined if moved inside fetch()?
+    // TODO Why response is undefined if moved inside download()?
     var response = new utils.Response(response)
-    fetch(request.param('url'), function(error, image) {
-        if (error) return response.handleUserError(error)
-        resizeAndCrop(image, request.param('width'), request.param('height'), function(error, image) {
+    utils.download(request.param('url'), function(error, file) {
+        if (error) return response.handleError(error)
+        image.resizeAndCrop(file, request.param('width'), request.param('height'), function(error, image) {
             if (error) return response.handleError(error)
             send(image)
         })

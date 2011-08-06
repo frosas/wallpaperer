@@ -22,6 +22,7 @@
             <div>URL <input name="url" /></div>
             <div>Dimensions <input name="width" /> x <input name="height" /></div>
             <input type="submit" value="Resize" />
+            <button id="search-similiar-button">Search similar images</button>
         </form>
 
         <div>
@@ -43,6 +44,12 @@
                     $('<img>').attr({src: url})
                 )
                 return false
+            })
+
+            $('#search-similiar-button').click(function() {
+                open('http://images.google.com/searchbyimage?' + $.param({
+                    image_url: $('#image-form :input[name=url]').val()
+                }))
             })
         </script>
 

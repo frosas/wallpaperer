@@ -5,7 +5,8 @@
     "dependencies": {
         "express": "2.4.x",
         "request": "2.0.x",
-        "ejs": "0.4.x"
+        "ejs": "0.4.x",
+        "temp": "0.2.x"
     }
 }
 

@@ -1,0 +1,12 @@
+body {
+    font-family: Droid Sans, Arial, sans-serif;
+    font-size: 14px;
+}
+input[name=url] { 
+    width: 45em;
+}
+input[name=width], 
+input[name=height] { 
+    width: 5em;
+}
+

@@ -19,3 +19,6 @@ $('#search-similiar-button').click(function() {
     }))
 })
 
+io.connect().on('transform step', function(args) {
+    $('#step-placeholder').text(args.title)
+})

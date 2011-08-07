@@ -9,7 +9,6 @@ Adapts an image to user's screen size
 - Bookmarklet
 - Cache downloaded image
 - Cache final image
-- Allow user to track process (downloading, resizing, croping, sending, ...)
 - A nice UI
 - Allow resizing/cropping visually
 - Allow editing from Picnik

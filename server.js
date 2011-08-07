@@ -19,8 +19,7 @@ app.get('/api/transform', function(request, response) {
 
     var send = function(image) {
         response.response().contentType('image/jpeg')
-        response.response().write(image)
-        response.response().end()
+        response.response().end(image)
     }
 
     // TODO Why response is undefined if moved inside download()?

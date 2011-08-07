@@ -24,8 +24,8 @@ app.get('/', function(request, response) {
 app.get('/api/transform', function(request, response) {
 
     var notifyStep = function(title) {
-        var id = request.session.id
-        if (id) sessionSockets.emit(id, 'transform step', { title: title })
+        var socket = sessionSockets.get(request.session.id)
+        if (socket) socket.emit('transform step', { title: title })
     }
 
     var send = function(image, callback) {

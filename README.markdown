@@ -16,3 +16,4 @@ Adapts an image to user's screen size
 - Correctly detect special screens
   - Multiple screens
   - Different devices (smartphones, tables, ...)
+- Test

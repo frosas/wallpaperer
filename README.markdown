@@ -17,3 +17,5 @@ Adapts an image to user's screen size
   - Multiple screens
   - Different devices (smartphones, tables, ...)
 - Test
+- Steps should not be notified when resizing on another window (web socket is 
+  shared across sessions requests)

@@ -24,8 +24,11 @@ app.get('/', function(request, response) {
 app.get('/api/transform', function(request, response) {
 
     var setStatus = function(title) {
+        var transaction = request.param('transaction')
+        if (! transaction) return
         var socket = sessionSockets.get(request.session.id)
-        if (socket) socket.emit('transform step', {title: title})
+        if (! socket) return
+        socket.emit('transform step', {transaction: transaction, title: title})
     }
 
     setStatus('Downloading')

@@ -23,27 +23,20 @@ app.get('/', function(request, response) {
 
 app.get('/api/transform', function(request, response) {
 
-    var notifyStep = function(title) {
+    var setStatus = function(title) {
         var socket = sessionSockets.get(request.session.id)
-        if (socket) socket.emit('transform step', { title: title })
+        if (socket) socket.emit('transform step', {title: title})
     }
 
-    var send = function(image, callback) {
-        response.contentType('image/jpeg')
-        response.end(image)
-        callback()
-    }
-
-    notifyStep('Downloading')
+    setStatus('Downloading')
     utils.download(request.param('url'), function(error, file) {
         if (error) return new utils.Response(response).handleError(error)
-        notifyStep('Resizing and cropping')
+        setStatus('Resizing and cropping')
         image.resizeAndCrop(file, request.param('width'), request.param('height'), function(error, image) {
             if (error) return new utils.Response(response).handleError(error)
-            notifyStep('Sending')
-            send(image, function() {
-                notifyStep('Done')
-            })
+            setStatus('Sending')
+            response.contentType('image/jpeg')
+            response.end(image)
         })
     })
 })

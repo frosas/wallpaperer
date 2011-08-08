@@ -6,12 +6,13 @@ body { font: 14px/1.4 "Lucida Grande", "Helvetica Neue", Arial, sans-serif;
 input[name=url] { width: 45em }
 input[name=width], 
 input[name=height] { width: 5em }
-#image-placeholder { width: 500px; height: 500px }
-#image-placeholder img { max-width: 100%; max-height: 100%; 
-    border: 3px solid #ccc; border-radius: 7px; padding: 5px }
 
 #status { position: absolute; left: 50% }
 #status .content { position: relative; left: -50% }
 #status .content .message { background: #f6e7a0; border: 2px solid #edd97e; 
     border-top-width: 0; border-radius: 0 0 7px 7px; padding: 3px 9px; 
     text-align: center; font-size: 90% }
+
+#image-placeholder { width: 500px; height: 500px; padding: 10px 0 }
+#image-placeholder img { max-width: 100%; max-height: 100%; 
+    padding: 5px; cursor: move; box-shadow: 0 0 20px #888 }

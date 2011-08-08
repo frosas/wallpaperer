@@ -24,14 +24,13 @@ $('#image-form').submit(function() {
         height: $('input[name=height]').val(),
         url: $('input[name=url]').val()
     })
-    var imagePlaceholder = $('#image-placeholder')
+    $('#image-placeholder')
         .empty()
-        .append($('<img>').attr({src: url})
+        .append($('<img>').attr({src: url, draggable: 'true', title: "Drag this image to your desktop to save it"})
             .hide()
             .load(function() {
                 $(this).show()
                 wallpaperer.status.clear()
-                imagePlaceholder.append($("<p>Save the image by dragging it to your desktop</p>"))
             })
             .error(function(event) {
                 wallpaperer.status.set('Error loading image')

@@ -6,17 +6,19 @@
     </head>
     <body>
 
-        <form id="image-form">
-            <div>URL <input name="url" /></div>
-            <div>Dimensions <input name="width" /> x <input name="height" /></div>
-            <input type="submit" value="Resize" />
-            <button id="search-similiar-button">Search similar images</button>
-        </form>
+        <div id="status"><div class="content"></div></div>
 
-        <div id="step-placeholder"></div>
+        <div id="content">
 
-        <div>
-            <span id="image-placeholder" />
+            <form id="image-form">
+                <div>URL <input name="url" /></div>
+                <div>Dimensions <input name="width" /> x <input name="height" /></div>
+                <input type="submit" value="Resize" />
+                <button id="search-similiar-button">Search similar images</button>
+            </form>
+
+            <div id="image-placeholder"></div>
+
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

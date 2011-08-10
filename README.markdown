@@ -1,8 +1,12 @@
 # Wallpaperer
 
-Adapts an image to user's screen size
+## Features
 
-# TODO
+- Image is resized and cropped (if necessary) to fit the desired size
+- Desktop size is automatically detected
+- Search for similar images (uses Google Images)
+
+## TODO
 
 - Download button
   - File name: {$originalName}-{$width}x{$height}.jpg
@@ -13,8 +17,20 @@ Adapts an image to user's screen size
 - Allow resizing/cropping visually
 - Allow editing from Picnik
 - Upload file
-- Correctly detect special screens
-  - Multiple screens
-  - Different devices (smartphones, tables, ...)
-- Test
-- Start process as soon an URL is introduced
+- Unit and functional tests
+- Detect multiple screens
+- Android 2.3 browser give random screen dimensions
+- Test it with Chrome, Firefox, Safari, Opera, iPhone & iPad
+
+## Installation and execution
+
+It requires node.js (http://nodejs.org/) and npm (http://npmjs.org/)
+
+```bash
+$ git clone git://github.com/frosas/wallpaperer.git wallpaperer
+$ cd wallpaperer
+$ npm install
+$ node server.js
+```
+
+Now you can use it at http://localhost:8080/

@@ -4,6 +4,7 @@
 
 - Image is resized and cropped (if necessary) to fit the desired size
 - Desktop size is automatically detected
+- Search for similar images (uses Google Images)
 
 ## TODO
 

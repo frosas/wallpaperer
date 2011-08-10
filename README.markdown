@@ -21,3 +21,16 @@
 - Detect multiple screens
 - Android 2.3 browser give random screen dimensions
 - Test it with Chrome, Firefox, Safari, Opera, iPhone & iPad
+
+## Installation and execution
+
+Requirements:
+- node.js (http://nodejs.org/)
+- npm (http://npmjs.org/)
+
+$ git clone git://github.com/frosas/wallpaperer.git wallpaperer
+$ cd wallpaperer
+$ npm install
+$ node server.js
+
+Now you can use it at http://localhost:8080/

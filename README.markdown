@@ -25,12 +25,13 @@
 ## Installation and execution
 
 Requirements:
+
 - node.js (http://nodejs.org/)
 - npm (http://npmjs.org/)
 
-$ git clone git://github.com/frosas/wallpaperer.git wallpaperer
-$ cd wallpaperer
-$ npm install
-$ node server.js
+    $ git clone git://github.com/frosas/wallpaperer.git wallpaperer
+    $ cd wallpaperer
+    $ npm install
+    $ node server.js
 
 Now you can use it at http://localhost:8080/

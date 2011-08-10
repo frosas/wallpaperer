@@ -27,7 +27,7 @@
 It requires node.js (http://nodejs.org/) and npm (http://npmjs.org/)
 
 ```bash
-$ git clone git://github.com/frosas/wallpaperer.git wallpaperer
+$ git clone git://github.com/frosas/wallpaperer.git
 $ cd wallpaperer
 $ npm install
 $ node server.js

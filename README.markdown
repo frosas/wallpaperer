@@ -24,7 +24,7 @@
 
 ## Installation and execution
 
-It requires node.js (http://nodejs.org/) and npm (http://npmjs.org/)
+It requires node.js (http://nodejs.org), npm (http://npmjs.org) and ImageMagick (http://imagemagick.org)
 
 ```bash
 $ git clone git://github.com/frosas/wallpaperer.git

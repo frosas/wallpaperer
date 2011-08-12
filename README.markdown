@@ -21,6 +21,7 @@
 - Detect multiple screens
 - Android 2.3 browser give random screen dimensions
 - Test it with Chrome, Firefox, Safari, Opera, iPhone & iPad
+- DotCloud and socket.io don't get along (https://github.com/LearnBoost/socket.io/issues/301)
 
 ## Installation and execution
 

@@ -8,6 +8,29 @@ $.fn.complete = function(callback) {
     return this
 }
 
+$.fn.instantChange = function(callback) {
+
+    $(this).focus(function() {
+
+        var originalValue = $(this).val()
+        var input = this
+        var interval = setInterval(function() {
+            var currentValue = $(input).val()
+            if (currentValue != originalValue) {
+                originalValue = currentValue
+                callback.call(input)
+            }
+        }, 100)
+
+        $(this).blur(function() {
+            clearInterval(interval)
+        })
+    })
+
+    // Fallback to the change event to cover other ways of modifying the value 
+    $(this).change(callback)
+}
+
 var wallpaperer = {}
 
 wallpaperer.status = (function() {
@@ -35,9 +58,6 @@ wallpaperer.transaction = (function() {
         }
     }
 })()
-
-$('input[name=width]').val(screen.width)
-$('input[name=height]').val(screen.height)
 
 $('#image-form').submit(function() {
 
@@ -75,4 +95,11 @@ io.connect().on('transform step', function(args) {
     if (args.transaction == wallpaperer.transaction.id()) {
         wallpaperer.status.set(args.title)
     }
+})
+
+$('input[name=width]').val(screen.width)
+$('input[name=height]').val(screen.height)
+
+$('input[name=url]').instantChange(function() {
+    $(this).width($(this).val().length + 'em')
 })

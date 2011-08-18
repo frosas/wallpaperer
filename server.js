@@ -18,7 +18,9 @@ app.configure(function() {
 })
 
 app.get('/', function(request, response) {
-    response.render('index')
+    response.render('index', {
+        url: request.param('url') || ''
+    })
 })
 
 app.get('/api/transform', function(request, response) {

@@ -29,6 +29,9 @@ $.fn.instantChange = function(callback) {
 
     // Fallback to the change event to cover other ways of modifying the value 
     $(this).change(callback)
+
+    // Make sure it's called at least once
+    $(this).change()
 }
 
 var wallpaperer = {}

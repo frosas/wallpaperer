@@ -1,5 +1,7 @@
 # Wallpaperer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/frosas/wallpaperer.svg)](https://greenkeeper.io/)
+
 ## Features
 
 - Image is resized and cropped (if necessary) to fit the desired size
